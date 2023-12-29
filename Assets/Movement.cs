@@ -4,10 +4,12 @@ public class SideScrollerCharacterController : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public float jumpForce = 7.0f;
-    public LayerMask groundLayer;
+    public int maxJumps = 2; // Maximum number of jumps
+    public LayerMask groundLayer; // LayerMask to determine what is considered as ground
 
     private Rigidbody rb;
     private bool isGrounded;
+    private int jumpCount;
     private float groundCheckRadius = 0.2f;
     private Transform groundCheck;
 
@@ -15,6 +17,7 @@ public class SideScrollerCharacterController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         groundCheck = transform.Find("GroundCheck");
+        jumpCount = 0;
 
         if (groundCheck == null)
         {
@@ -25,7 +28,7 @@ public class SideScrollerCharacterController : MonoBehaviour
     void Update()
     {
         Move();
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && (isGrounded || jumpCount < maxJumps))
         {
             Jump();
         }
@@ -33,8 +36,11 @@ public class SideScrollerCharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Check if the character is grounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer, QueryTriggerInteraction.Ignore);
+        if (isGrounded && rb.velocity.y <= 0)
+        {
+            jumpCount = 0;
+        }
     }
 
     void Move()
@@ -45,6 +51,8 @@ public class SideScrollerCharacterController : MonoBehaviour
 
     void Jump()
     {
+        rb.velocity = new Vector3(rb.velocity.x, 0, 0);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        jumpCount++;
     }
 }

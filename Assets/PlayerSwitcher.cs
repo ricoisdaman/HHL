@@ -4,20 +4,20 @@ public class PlayerSwitcher : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;
+    public CameraFollow cameraFollow;
 
     private GameObject activePlayer;
 
     void Start()
     {
-        // Set the initial active player
         activePlayer = player1;
         player2.SetActive(false);
+        cameraFollow.SetTarget(activePlayer.transform);
     }
 
     void Update()
     {
-        // Check for the switch button press (assuming it's the space bar)
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             SwitchPlayer();
         }
@@ -25,8 +25,6 @@ public class PlayerSwitcher : MonoBehaviour
 
     void SwitchPlayer()
     {
-        Debug.Log("Switching player from: " + activePlayer);
-
         activePlayer.SetActive(false);
 
         if (activePlayer == player1)
@@ -39,7 +37,6 @@ public class PlayerSwitcher : MonoBehaviour
         }
 
         activePlayer.SetActive(true);
-
-        Debug.Log("Switched player to: " + activePlayer);
+        cameraFollow.SetTarget(activePlayer.transform);
     }
 }
