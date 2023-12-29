@@ -25,8 +25,7 @@ public class PlayerSwitcher : MonoBehaviour
 
     void SwitchPlayer()
     {
-        Debug.Log("Switching player from: " + activePlayer);
-
+        // Switch the active player instantly
         activePlayer.SetActive(false);
 
         if (activePlayer == player1)
@@ -39,7 +38,5 @@ public class PlayerSwitcher : MonoBehaviour
         }
 
         activePlayer.SetActive(true);
-
-        Debug.Log("Switched player to: " + activePlayer);
     }
 }
