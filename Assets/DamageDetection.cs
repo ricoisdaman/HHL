@@ -6,10 +6,18 @@ public class DamageDetection : MonoBehaviour
 {
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Harmful"))
+        HarmfulObject harmfulObject = collision.gameObject.GetComponent<HarmfulObject>();
+        if (harmfulObject != null)
         {
-            int damage = collision.gameObject.GetComponent<HarmfulObject>().damageAmount;
-            GetComponent<PlayerHealth>().TakeDamage(damage);
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(harmfulObject.damageAmount);
+            }
+            else
+            {
+                Debug.LogError("PlayerHealth component not found!");
+            }
         }
     }
 
