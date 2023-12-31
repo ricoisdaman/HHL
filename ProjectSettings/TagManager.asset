@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Harmful
+  - Pickable
   layers:
   - Default
   - TransparentFX

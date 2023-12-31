@@ -3,6 +3,7 @@ using UnityEngine;
 public class SideScrollerCharacterController : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
+    public float sprintSpeed = 8.0f; // Higher speed for sprinting
     public float jumpForce = 7.0f;
     public int maxJumps = 2; // Maximum number of jumps
     public LayerMask groundLayer; // LayerMask to determine what is considered as ground
@@ -10,12 +11,10 @@ public class SideScrollerCharacterController : MonoBehaviour
     private Rigidbody rb;
     private int jumpCount;
     private float groundCheckRadius = 0.2f;
-    private Transform groundCheck;
+    public Transform groundCheck;
 
     private Collider groundCheckCollider;
     private bool isGrounded;
-
-
 
     void Start()
     {
@@ -58,20 +57,26 @@ public class SideScrollerCharacterController : MonoBehaviour
         }
     }
 
-
     void FixedUpdate()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer, QueryTriggerInteraction.Ignore);
-        if (isGrounded && rb.velocity.y <= 0)
+        if (groundCheck == null)
         {
-            jumpCount = 0;
+            Debug.LogError("GroundCheck is null. Make sure it's assigned correctly.");
+            return; // Skip the rest of the method to avoid the NullReferenceException
         }
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer, QueryTriggerInteraction.Ignore);
+        // Rest of your FixedUpdate method...
     }
 
     void Move()
     {
         float move = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector3(move * moveSpeed, rb.velocity.y, 0f);
+
+        // Check for sprinting
+        float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+
+        rb.velocity = new Vector3(move * speed, rb.velocity.y, 0f);
     }
 
     void Jump()
