@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 473333831}
   - component: {fileID: 473333830}
   - component: {fileID: 473333829}
+  - component: {fileID: 473333833}
   m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Harmful
@@ -288,12 +289,30 @@ Transform:
   m_GameObject: {fileID: 473333828}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.38, y: 3.35, z: 8.4569}
+  m_LocalPosition: {x: -12.38, y: 1.34, z: 8.4569}
   m_LocalScale: {x: 11.184444, y: 1, z: 1.0335846}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473333833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473333828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed3051f4b2b3234eaa5c01570155d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementType: 0
+  moveSpeed: 3
+  moveDistance: 5
+  enableVisibilityToggle: 1
+  visibleDuration: 2
+  invisibleDuration: 2
 --- !u!1 &600467385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2183,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371462957269981005, guid: 3980298aa2cfec44cb5f91ad83ffdf59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951980666284992990, guid: 3980298aa2cfec44cb5f91ad83ffdf59, type: 3}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
