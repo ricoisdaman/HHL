@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 8781655992389057520}
-  player2: {fileID: 0}
+  player2: {fileID: 5383412611190985798, guid: 3980298aa2cfec44cb5f91ad83ffdf59, type: 3}
   cameraFollow: {fileID: 0}
 --- !u!114 &8727223182552946568
 MonoBehaviour:
