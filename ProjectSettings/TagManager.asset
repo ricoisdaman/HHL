@@ -7,6 +7,7 @@ TagManager:
   - Harmful
   - Pickable
   - Door
+  - StartingRoom
   layers:
   - Default
   - TransparentFX
